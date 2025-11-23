@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // given an integer value, convert it to a floating-point value and point print both.
 #include<stdio.h>
 int main(int argc, char const *argv[])
@@ -14,4 +15,22 @@ int main(int argc, char const *argv[])
     printf("float converted is %f", (float) number);
     return 0;
 }
+=======
+// given an integer value, convert it to a floating-point value and point print both.
+#include<stdio.h>
+int main(int argc, char const *argv[])
+{
+    int number;
+    printf("Enter your number:\n");
+    scanf("%d", &number);
+
+    float floating = number;
+    printf("originial numver is : %d", number);
+    // or
+    printf("float converted is : %f", floating);
+    // or
+    printf("float converted is %f", (float) number);
+    return 0;
+}
+>>>>>>> 013d0e217c9d130a0e261bcd3d97657869d04c02
  
