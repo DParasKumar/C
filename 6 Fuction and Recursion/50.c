@@ -1,13 +1,15 @@
-// Write a function named greet that prints "Hello, World!" when called.
+// Write a function named greet that printd "Hello, Wolrd", when called.
 #include<stdio.h>
-void Hello();
 
-void Hello(){
-    printf("Hello, World !");
-}
+
+void greet();
+
 int main(int argc, char const *argv[])
 {
-    printf("This is First function here \n");
-    Hello();
+    greet();
     return 0;
+}
+
+void greet(){
+    printf("Hello Wolrd");
 }
