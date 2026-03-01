@@ -1,22 +1,21 @@
-// create a function max that takes two float arguments and returns the larger value.
-#include<stdio.h>
+#include <stdio.h>
 
-float max(float,float);
-
-float max(float a , float b){
-    if (a>b)
-    {
-        printf("first number is greater: %f", a);
-    }
-    else{
-        printf("Second number is greater : %f", b);
-    }
-    
+float max(float a, float b){
+    if(a > b)
+        return a;
+    else
+        return b;
 }
 
+int main(){
+    float a, b;
 
-int main(int argc, char const *argv[])
-{
-    max(4.5,3.5);
+    printf("Please enter the first number: ");
+    scanf("%f", &a);
+
+    printf("Please enter the second number: ");
+    scanf("%f", &b);
+
+    printf("The larger number is: %f\n", max(a, b));
     return 0;
 }
