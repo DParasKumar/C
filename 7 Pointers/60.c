@@ -7,6 +7,6 @@ int main(int argc, char const *argv[])
     printf("The value of num is %d\n", num);
     *ptr = 87;
     printf("The value of num is %d", num);
-    /* code */
+    
     return 0;
 }
