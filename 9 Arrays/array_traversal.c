@@ -1,9 +1,9 @@
 #include<stdio.h>
 int main(int argc, char const *argv[])
 {
-    int marks[5];
+    int marks[10];
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
     {
         printf("Please enter marks for student %d:\n", i + 1);
         scanf("%d", &marks[i]);
@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
 
 
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
     {
         printf("\nthe marks of student %d are: %d",i+1, marks[i]);
     }
