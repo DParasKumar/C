@@ -9,5 +9,6 @@ int main(int argc, char const *argv[])
 
     printf("The Name you entered is :");
     puts(name);
+    
     return 0;
 }
