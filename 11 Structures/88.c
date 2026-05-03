@@ -3,48 +3,46 @@
 #include <stdio.h>
 #include <string.h>
 
-void inputbook(char title[], char author[], float *price)
-{
-    printf("Please Enter the book title: ");
-    fgets(title, 100, stdin);
-    title[strlen(title)] = 0;
 
-    printf("Please Enter the book author: ");
-    fgets(author, 100, stdin);
-    author[strlen(author)] = 0;
+typedef struct {
+    char title[100];
+    char author[100];
+    float price;
+} Book;
 
-    printf("Please Enter the book price in rs: ");
-    scanf("%f", price);
-    while(getchar() != '\n');
+
+void inputBook(Book *b) {
+    printf("Enter book title: ");
+    fgets(b->title, 100, stdin);
+    b->title[strcspn(b->title, "\n")] = 0;  
+
+    printf("Enter book author: ");
+    fgets(b->author, 100, stdin);
+    b->author[strcspn(b->author, "\n")] = 0;
+
+    printf("Enter price (Rs): ");
+    scanf("%f", &b->price);
+    while (getchar() != '\n'); 
 }
 
-void printbook(char titles[], char author[], float price)
-{
-    printf("\n%s is written by %s and is sold for Rs%.2f", titles, author, price);
+// ✅ Takes ONE Book instead of 3 separate values
+void printBook(const Book *b) {
+    printf("\n\"%s\" by %s — Rs%.2f\n", b->title, b->author, b->price);
 }
-int main(int argc, char const *argv[])
-{
-    printf("Welcome to the Book Store\n");
-    char titles[3][100];
-    char authors[3][100];
-    float prices[3];
 
-    for (int i = 0; i < 3; i++)
-    {
-        printf("Please Enter the book title: ");
-        fgets(titles[i], 100, stdin);
+int main() {
+    printf("=== Welcome to the Book Store ===\n\n");
 
-        printf("Please Enter the book author: ");
-        fgets(authors[i], 100, stdin);
+    Book library[3];  
 
-        printf("Please Enter the book price in rs: ");
-        scanf("%f", &prices[i]);
+    for (int i = 0; i < 3; i++) {
+        printf("--- Book %d ---\n", i + 1);
+        inputBook(&library[i]);
     }
 
-    printf("\nHere are the details of all the books:\n");
-    for (int i = 0; i < 3; i++)
-    {
-        printbook(titles[i], authors[i], prices[i]);
+    printf("\n--- All Books ---");
+    for (int i = 0; i < 3; i++) {
+        printBook(&library[i]);
     }
 
     return 0;
