@@ -7,9 +7,11 @@ void inputbook(char title[], char author[], float *price)
 {
     printf("Please Enter the book title: ");
     fgets(title, 100, stdin);
+    title[strlen(title)] = 0;
 
     printf("Please Enter the book author: ");
     fgets(author, 100, stdin);
+    author[strlen(author)] = 0;
 
     printf("Please Enter the book price in rs: ");
     scanf("%f", price);
