@@ -34,6 +34,7 @@ int main(int argc, char const *argv[])
 
     printf("The sum of all elements is: %ld\n", sum);
 
-
+    free(arr);  // ✅ Always free allocated memory
+    arr = NULL;
     return 0;
 }
