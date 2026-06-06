@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < size; i++)
     {
-        printf("Now enter elements number %d", (i + 1));
+        printf("Now enter elements number %d:", (i + 1));
         scanf("%f", &arr[i]);
     }
 
