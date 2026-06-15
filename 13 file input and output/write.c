@@ -3,30 +3,21 @@
 int main(int argc, char const *argv[])
 {
     FILE *file_pointer;
-    char text[100];
 
-    file_pointer = fopen("coding.txt", "r");
+    file_pointer = fopen("writing.txt", "w");
     if (file_pointer == NULL)
     {
-        printf("invalid file");
+        printf("file could not be opened");
         return 1;
     }
 
-    // fgets(text, 100, file_pointer);
-    // printf("\n%s", text);
-
-    int c;
-    do
-    {
-        c = fgetc(file_pointer);
-        printf("%c", c);
-    } while (c != EOF);
+    fprintf(file_pointer, "This is my first write operation\n");
+    fprintf(file_pointer, "The square of %d is %d", 3,9);
 
     int result = fclose(file_pointer);
     if (result == 0)
     {
         file_pointer = NULL;
-        /* code */
     }
     else
     {

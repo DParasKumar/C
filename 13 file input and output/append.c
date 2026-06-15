@@ -3,30 +3,20 @@
 int main(int argc, char const *argv[])
 {
     FILE *file_pointer;
-    char text[100];
 
-    file_pointer = fopen("coding.txt", "r");
+    file_pointer = fopen("writing.txt", "a");
     if (file_pointer == NULL)
     {
-        printf("invalid file");
+        printf("file could not be opened");
         return 1;
     }
 
-    // fgets(text, 100, file_pointer);
-    // printf("\n%s", text);
-
-    int c;
-    do
-    {
-        c = fgetc(file_pointer);
-        printf("%c", c);
-    } while (c != EOF);
+    fprintf(file_pointer, "this text will be added after exisiting text in the file");
 
     int result = fclose(file_pointer);
     if (result == 0)
     {
         file_pointer = NULL;
-        /* code */
     }
     else
     {

@@ -1,0 +1,2 @@
+This is my first write operation
+The square of 3 is 9this text will be added after exisiting text in the file
