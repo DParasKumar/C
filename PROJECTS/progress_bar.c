@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <time.h>
+
 const int BAR_LENGTH = 100;
 const int MAX_TASKS = 5;
 
@@ -8,46 +11,60 @@ typedef struct Task
     int id;
     int progress;
     int step;
-    /* data */
-};
+} Task;
+
 void print_bar(Task task);
+void clear_screen(void);
+
 int main(int argc, char const *argv[])
 {
     Task task[MAX_TASKS];
+    srand(time(NULL));
     for (int i = 0; i < MAX_TASKS; i++)
     {
         task[i].id = i + 1;
         task[i].progress = 0;
-        task[i].step = 2;
+        task[i].step = rand() % 5 + 1;
     }
 
     int tasks_incomplete = 1;
     while (tasks_incomplete)
     {
-        for (int i = 0; i < MAX_TASKS; i++){
-            tasks[i].progress += tasks[i].step;
-            if (tasks[i].progress > 100)
+        tasks_incomplete = 0; // assume done unless we find one that isn't
+        clear_screen();
+        for (int i = 0; i < MAX_TASKS; i++)
+        {
+            task[i].progress += task[i].step;
+            if (task[i].progress > 100)
             {
-                tasks[i].progress = 100;
-            }else if (tasks[i].progress < 100)
+                task[i].progress = 100;
+            }
+            else if (task[i].progress < 100)
             {
                 tasks_incomplete = 1;
             }
-            print_bar (tasks[i]);
-            
+            print_bar(task[i]);
         }
+        printf("\n"); // separate this tick's block of bars from the next
         sleep(1);
     }
 
     return 0;
 }
 
+void clear_screen(void)
+{
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 void print_bar(Task task)
 {
-    /* code */
-    // int id = 3, progress = 40;
     int bars_to_show = (task.progress * BAR_LENGTH) / 100;
-    printf("\nTask %d: [", task.id);
+    printf("Task %d: [", task.id);
     for (int i = 0; i < BAR_LENGTH; i++)
     {
         if (i < bars_to_show)
@@ -59,6 +76,5 @@ void print_bar(Task task)
             printf(" ");
         }
     }
-
-    printf("] %d%%", task.progress);
+    printf("] %d%%\n", task.progress);
 }
