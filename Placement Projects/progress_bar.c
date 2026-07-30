@@ -4,7 +4,7 @@
 #include <time.h>
 
 const int BAR_LENGTH = 100;
-const int MAX_TASKS = 5;
+const int MAX_TASKS = 15;
 
 typedef struct Task
 {
@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
     int tasks_incomplete = 1;
     while (tasks_incomplete)
     {
-        tasks_incomplete = 0; // assume done unless we find one that isn't
+        tasks_incomplete = 0; 
         clear_screen();
         for (int i = 0; i < MAX_TASKS; i++)
         {
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
             }
             print_bar(task[i]);
         }
-        printf("\n"); // separate this tick's block of bars from the next
+        printf("\n"); 
         sleep(1);
     }
 
