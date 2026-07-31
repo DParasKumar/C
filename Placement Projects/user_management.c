@@ -2,6 +2,7 @@
 #include <string.h>
 
 #define MAX_USERS 10
+#define CREDENTIAL_LENGTH = 30
 
 typedef struct
 {
@@ -92,7 +93,7 @@ int login_user()
         {
             return i;
         }
-    }
+    } 
 
     return -1;
 }
