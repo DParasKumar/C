@@ -133,7 +133,41 @@ void deposit_money()
 }
 void withdraw_money()
 {
-    printf("\nWithdrawing Money");
+    FILE *file = fopen(ACCOUTN_FILE, "rb+");
+    if (file == NULL)
+    {
+        printf("\nUnable to open file !!");
+        return;
+    }
+
+    int acc_no;
+    float money;
+    Account acc_r;
+    printf("\nEnter your account number:");
+    scanf("%d", &acc_no);
+    printf("Enter amount to withdraw:");
+    scanf("%f",&money);
+
+    while (fread(&acc_r , sizeof(acc_r), 1, file))
+    {
+        if (acc_r.acc_no >= acc_no)
+        {
+            if (acc_r.balance >= money)
+            {
+                acc_r.balance -= money;
+                fseek(file, -sizeof(acc_r), SEEK_CUR);
+                fwrite(&acc_r, sizeof(acc_r),1, file);
+                printf("Succesffully withdrawn Rs. %.2f Remaining balance is Rs. %.2f", money, acc_r, acc_r.balance);
+            }else{
+                printf("Insufficient balance!");
+            }
+            
+        }
+        
+        /* code */
+    }
+    fclose(file);
+    printf("Account no %d not found in records.", acc_no);
 }
 void check_balance()
 {
