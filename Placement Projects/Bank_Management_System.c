@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
 
         int choice;
 
-        printf("\n\n***Bank Management System***");
+        printf("\n***Bank Management System***");
         printf("\n 1.Create Account");
         printf("\n 2.Deposit Money");
         printf("\n 3.Withdraw Money");
