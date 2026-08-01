@@ -1,9 +1,66 @@
 #include <stdio.h>
+#include <string.h>
 
 void create_account();
 void deposit_money();
 void withdraw_money();
 void check_balance();
+
+typedef struct
+{
+    char name[50];
+    int acc_no;
+    float balance;
+    /* data */
+} Account;
+
+void create_account()
+{
+    FILE *file = fopen("account.dat", "ab+");
+    if (file == NULL)
+    {
+        printf("\nUnable to open file !!");
+        return;
+    }
+
+    Account acc;
+
+    char c;
+    do
+    {
+        /* code */
+        c = getchar();
+    } while (c != '\n' && c !=EOF);
+    
+    
+    
+    printf("\n Enter your name: ");
+    fgets(acc.name, sizeof(acc.name), stdin);
+
+    strcspn(acc.name, "\n");
+    int ind = strcspn(acc.name, "\n");
+    acc.name[ind] = '\0';
+    printf("\nEnter your account number:");
+    scanf("%d", &acc.acc_no);
+    acc.balance = 0;
+
+    fwrite(&acc, sizeof(acc), 1, file);
+    fclose(file);
+    printf("\nAccount created successfully");
+}
+void deposit_money()
+{
+    printf("\nDepositing Money");
+}
+void withdraw_money()
+{
+    printf("\nWithdrawing Money");
+}
+void check_balance()
+{
+    printf("\nCecking Balance");
+}
+
 
 int main(int argc, char const *argv[])
 {
@@ -54,20 +111,4 @@ int main(int argc, char const *argv[])
             break;
         }
     }
-}
-void create_account()
-{
-    printf("\nCreating Account");
-}
-void deposit_money()
-{
-    printf("\nDepositing Money");
-}
-void withdraw_money()
-{
-    printf("\nWithdrawing Money");
-}
-void check_balance()
-{
-    printf("\nCecking Balance");
 }
