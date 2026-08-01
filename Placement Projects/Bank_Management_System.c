@@ -98,7 +98,38 @@ void create_account()
 }
 void deposit_money()
 {
-    printf("\nDepositing Money");
+    FILE *file = fopen(ACCOUTN_FILE, "rb+");
+    if (file == NULL)
+    {
+        printf("\nUnable to open file !!");
+        return;
+    }
+    int acc_no;
+    float money;
+    Account acc_r;
+    printf("\nEnter your account number:");
+    scanf("%d", &acc_no);
+    printf("Enter amount to deposit:");
+    scanf("%f",&money);
+
+    while (fread(&acc_r , sizeof(acc_r), 1, file))
+    {
+        if (acc_r.acc_no == acc_no)
+        {
+            acc_r.balance +=money;
+            fseek(file, -sizeof(acc_r), SEEK_CUR);
+            fwrite(&acc_r, sizeof(acc_r), 1, file);
+            fclose(file);
+            printf("Successfuly deposisted Rs %.2f. New balance is Rs %.2f", money, acc_r.balance);
+            return;
+        }
+        
+        /* code */
+    }
+    fclose(file);
+    printf("Account no %d not found in records.", acc_no);
+    
+
 }
 void withdraw_money()
 {
@@ -125,8 +156,6 @@ void check_balance()
             fclose(file);
             return;
         }
-
-        
     }
     fclose(file);
     printf("\nAccount No: %d was not found\n", acc_no);
