@@ -5,6 +5,7 @@ void create_account();
 void deposit_money();
 void withdraw_money();
 void check_balance();
+const char *ACCOUTN_FILE = "account.dat";
 
 typedef struct
 {
@@ -13,54 +14,6 @@ typedef struct
     float balance;
     /* data */
 } Account;
-
-void create_account()
-{
-    FILE *file = fopen("account.dat", "ab+");
-    if (file == NULL)
-    {
-        printf("\nUnable to open file !!");
-        return;
-    }
-
-    Account acc;
-
-    char c;
-    do
-    {
-        /* code */
-        c = getchar();
-    } while (c != '\n' && c !=EOF);
-    
-    
-    
-    printf("\n Enter your name: ");
-    fgets(acc.name, sizeof(acc.name), stdin);
-
-    strcspn(acc.name, "\n");
-    int ind = strcspn(acc.name, "\n");
-    acc.name[ind] = '\0';
-    printf("\nEnter your account number:");
-    scanf("%d", &acc.acc_no);
-    acc.balance = 0;
-
-    fwrite(&acc, sizeof(acc), 1, file);
-    fclose(file);
-    printf("\nAccount created successfully");
-}
-void deposit_money()
-{
-    printf("\nDepositing Money");
-}
-void withdraw_money()
-{
-    printf("\nWithdrawing Money");
-}
-void check_balance()
-{
-    printf("\nCecking Balance");
-}
-
 
 int main(int argc, char const *argv[])
 {
@@ -111,4 +64,70 @@ int main(int argc, char const *argv[])
             break;
         }
     }
+}
+void create_account()
+{
+    Account acc;
+    FILE *file = fopen(ACCOUTN_FILE, "ab+");
+    if (file == NULL)
+    {
+        printf("\nUnable to open file !!");
+        return;
+    }
+
+    char c;
+    do
+    {
+        /* code */
+        c = getchar();
+    } while (c != '\n' && c != EOF);
+
+    printf("\n Enter your name: ");
+    fgets(acc.name, sizeof(acc.name), stdin);
+
+    strcspn(acc.name, "\n");
+    int ind = strcspn(acc.name, "\n");
+    acc.name[ind] = '\0';
+    printf("\nEnter your account number:");
+    scanf("%d", &acc.acc_no);
+    acc.balance = 0;
+
+    fwrite(&acc, sizeof(acc), 1, file);
+    fclose(file);
+    printf("\nAccount created successfully");
+}
+void deposit_money()
+{
+    printf("\nDepositing Money");
+}
+void withdraw_money()
+{
+    printf("\nWithdrawing Money");
+}
+void check_balance()
+{
+    FILE *file = fopen(ACCOUTN_FILE, "rb");
+    if (file == NULL)
+    {
+        printf("\nUnable to open file !!");
+        return;
+    }
+    int acc_no;
+    Account acc_read;
+    printf("\nEnter your account number:");
+    scanf("%d", &acc_no);
+
+    while (fread(&acc_read, sizeof(acc_read), 1, file))
+    {
+        if (acc_read.acc_no == acc_no)
+        {
+            printf("Your current balance is Rs.%.2f", acc_read.balance);
+            fclose(file);
+            return;
+        }
+
+        
+    }
+    fclose(file);
+    printf("\nAccount No: %d was not found\n", acc_no);
 }
