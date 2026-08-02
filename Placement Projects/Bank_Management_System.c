@@ -161,13 +161,16 @@ void withdraw_money()
             }else{
                 printf("Insufficient balance!");
             }
+            fclose(file);
+            return;
             
         }
         
+    
         /* code */
     }
     fclose(file);
-    printf("Account no %d not found in records.", acc_no);
+    printf("Account no find", acc_no);
 }
 void check_balance()
 {
