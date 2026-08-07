@@ -20,9 +20,15 @@ int main(int argc, char const *argv[])
 }
 void print_puzzle(int puzzle[9][9])
 {
-    printf("\n\n +--------+--------+");
+    printf("\n\n +--------+--------+--------+");
     for (int row = 0; row < 9; row++)
     {
+
+        if (row % 3 == 0 && row != 0)
+        {
+            printf("\n |+-------+--------+-------+|");
+        }
+
         printf("\n");
         for (int col = 0; col < 9; col++)
         {
@@ -30,13 +36,19 @@ void print_puzzle(int puzzle[9][9])
             {
                 printf(" | ");
             }
-            
-            printf("%d", puzzle[row][col]);
+            if (puzzle[row][col] != 0)
+            {
+                printf("%d ", puzzle[row][col]);
+            }
+            else
+            {
 
+                printf("  ");
+            }
         }
-        
+
         printf(" |");
     }
-    
-    printf("\n +--------+--------+");
+
+    printf("\n +--------+--------+--------+");
 }
