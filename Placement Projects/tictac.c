@@ -19,6 +19,7 @@ void clear_screen();
 void print_board(char board[BOARD_SIZE][BOARD_SIZE]);
 int check_win(char board[BOARD_SIZE][BOARD_SIZE], char player);
 int check_draw(char board[BOARD_SIZE][BOARD_SIZE]);
+void play_game();
 
 int check_win(char board[BOARD_SIZE][BOARD_SIZE], char player)
 {
