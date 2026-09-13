@@ -1,8 +1,40 @@
-What is the capital city of India?
-Delhi
+What is the capital of India?
 Mumbai
+New Delhi
 Kolkata
 Chennai
-A
-10
+B
+30
 1000
+Which planet is known as the Red Planet?
+Venus
+Jupiter
+Mars
+Saturn
+C
+30
+2000
+Who wrote the Indian national anthem?
+Bankim Chandra Chattopadhyay
+Rabindranath Tagore
+Sarojini Naidu
+Mahatma Gandhi
+B
+20
+5000
+What is the chemical symbol for Gold?
+Ag
+Fe
+Au
+Gd
+C
+15
+10000
+In which year did India gain independence?
+1942
+1945
+1947
+1950
+C
+15
+20000
